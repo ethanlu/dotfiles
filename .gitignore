@@ -1,4 +1,9 @@
-# Compiled Python files
+# Python
+.cache/
+.eggs/
+.tox/
+*__pycache__
+*.egg-info/
 *.pyc
 
 # Folder view configuration files
@@ -12,3 +17,6 @@ Thumbs.db
 # Files that might appear on external disks
 .Spotlight-V100
 .Trashes
+
+# IDEs
+.idea/
