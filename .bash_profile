@@ -1,8 +1,16 @@
+# set 256 color profile where possible
+if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
+    export TERM=gnome-256color
+elif infocmp xterm-256color >/dev/null 2>&1; then
+    export TERM=xterm-256color
+fi
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,export,bash_prompt,alias,extra}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+for file in ~/.{path,export,bash_prompt,alias,extra};
+do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
