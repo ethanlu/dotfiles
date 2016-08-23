@@ -1,12 +1,17 @@
-# some nifty stuffs taken from https://github.com/mathiasbynens/dotfiles/blob/master/.aliases and some stuff custom to me
-
 # ls
-alias ll="ls -alFh ${colorflag}"
-alias ld="ls -lF ${colorflag}"
+if [ $(uname -s) == "Darwin" ]; then
+	alias ll="ls -alFh -G"
+	alias ld="ls -lF -G"
+else
+	alias ll="ls -alFh --color"
+	alias ld="ls -lF --color"
+fi
 
 # locate
 alias update_locate="sudo /usr/libexec/locate.updatedb"
 
-# Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+if [  ]; then
+	# Show/hide hidden files in Finder
+	alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+	alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+fi

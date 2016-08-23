@@ -1,4 +1,0 @@
-# python
-export PYTHONDONTWRITEBYTECODE=true
-export PYTHONSTARTUP=~/.pystartup
-export GITCHANGELOG_CONFIG_FILENAME=~/.gitchangelog.rc

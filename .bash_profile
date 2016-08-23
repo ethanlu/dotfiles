@@ -1,18 +1,17 @@
-# set 256 color profile where possible
-if [[ $COLORTERM == gnome-* && $TERM == xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-    export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-    export TERM=xterm-256color
+# load .bashrc if it exists
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
 fi
 
-# Load the shell dotfiles, and then some:
-# * ~/.path can be used to extend `$PATH`.
-# * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,export,bash_prompt,alias,extra};
-do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# load environment settings
+if [ -f ~/.environment ]; then
+	. ~/.environment
+fi
+
+# load any extra configurations
+if [ -f ~/.extra ]; then
+	. ~/.extra
+fi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;

@@ -1,6 +1,15 @@
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
+	. /etc/bashrc
 fi
 
-[ -n "$PS1" ] && source ~/.bash_profile;
+# load aliases
+if [ -f ~/.alias ]; then
+	. ~/.alias
+fi
+
+# configure prompt
+if [ -f ~/.bash_prompt ]; then
+	. ~/.bash_prompt
+fi
+

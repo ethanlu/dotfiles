@@ -1,16 +1,12 @@
-#!/bin/bash
-# credit to : https://github.com/necolas/dotfiles/blob/master/shell/bash_prompt
-# Screenshot: http://i.imgur.com/DSJ1G.png
-# iTerm2 prefs: import Solarized theme (disable bright colors for bold text)
+# credit to :
+#           https://github.com/necolas/dotfiles/blob/master/shell/bash_prompt
+#           http://brettterpstra.com/2009/11/17/my-new-favorite-bash-prompt/
 # Color ref: http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 # More tips: http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-  colorflag="--color"
-else # OS X `ls`
-  colorflag="-G"
-fi
+fmt_time() {
+    date +"%F %T"
+}
 
 prompt_git() {
     local s=""
@@ -63,6 +59,7 @@ prompt_git() {
 }
 
 set_prompts() {
+    local formatted_time=`fmt_time`
     local black=""
     local blue=""
     local bold=""
@@ -127,15 +124,16 @@ set_prompts() {
     fi
 
     # set the terminal title to the current working directory
-    PS1="\[\033]0;\w\007\]"
+    #PS1="\[\033]0;\w\007\]"
 
-    PS1+="\n" # newline
+    PS1="\n" # newline
     PS1+="\[$userStyle\]\u" # username
     PS1+="\[$reset$white\]@"
     PS1+="\[$hostStyle\]\h" # host
     PS1+="\[$reset$white\]:"
     PS1+="\[$green\]\w" # working directory
-    PS1+="\$(prompt_git \"$white on $cyan\")" # git repository details
+    PS1+="\$(prompt_git \"$white on $cyan\") " # git repository details
+    PS1+="\[$purple\]$formatted_time"
     PS1+="\n"
     PS1+="\[$reset$white\]\$ \[$reset\]" # $ (and reset color)
 
