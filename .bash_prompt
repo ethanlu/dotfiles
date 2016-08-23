@@ -5,6 +5,13 @@
 # Color ref: http://vim.wikia.com/wiki/Xterm256_color_names_for_console_Vim
 # More tips: http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html
 
+# Detect which `ls` flavor is in use
+if ls --color > /dev/null 2>&1; then # GNU `ls`
+  colorflag="--color"
+else # OS X `ls`
+  colorflag="-G"
+fi
+
 prompt_git() {
     local s=""
     local branchName=""
