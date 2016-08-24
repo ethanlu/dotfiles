@@ -7,9 +7,3 @@ fi
 if [ -f ~/.alias ]; then
 	. ~/.alias
 fi
-
-# configure prompt
-if [ -f ~/.bash_prompt ]; then
-	. ~/.bash_prompt
-fi
-

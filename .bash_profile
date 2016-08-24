@@ -13,14 +13,16 @@ if [ -f ~/.extra ]; then
 	. ~/.extra
 fi
 
+# configure prompt
+if [ -f ~/.bash_prompt ]; then
+	. ~/.bash_prompt
+fi
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
-
-# Autocorrect typos in path names when using `cd`
-shopt -s cdspell;
 
 # Add tab completion for many Bash commands
 if [ -f /etc/bash_completion ]; then
