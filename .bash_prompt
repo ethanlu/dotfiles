@@ -112,9 +112,7 @@ set_prompts() {
         hostStyle="\[$yellow\]"
     fi
 
-    # set the terminal title to the current working directory
-    #PS1="\[\033]0;\w\007\]"
-
+    # add detail to prompt
     PS1="\n" # newline
     PS1+="\[$userStyle\]\u" # username
     PS1+="\[$reset$white\]@"
@@ -127,12 +125,12 @@ set_prompts() {
     PS1+="\[$reset$white\]\$ \[$reset\]" # $ (and reset color)
 
     export PS1;
-
-    # mac iterm tab name change
-    if [ $ITERM_SESSION_ID ]; then
-        export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
-    fi
 }
 
 set_prompts
 unset set_prompts
+
+# mac iterm tab name change
+if [ $ITERM_SESSION_ID ]; then
+    export PROMPT_COMMAND='echo -ne "\033]0; ${PWD}\007"';
+fi
